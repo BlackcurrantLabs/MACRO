@@ -1,0 +1,22 @@
+{
+  "name": "blcbackup",
+  "author": "Sanket Berde",
+  "license": "ISC",
+  "version": "1.0.0",
+  "description": "A backup utility to backup MySQL DB to AWS S3",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "zip" : "zip -r Archive.zip . && open ."
+  },
+  "keywords": [
+    "Backup",
+    "AWS",
+    "S3",
+    "MySQL",
+    "mysqldump"
+  ],
+  "dependencies": {
+    "mysqldump": "^1.4.2"
+  }
+}
