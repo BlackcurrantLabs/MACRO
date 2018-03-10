@@ -1,0 +1,16 @@
+{
+    "backup_folder": "Backups",
+    "S3": {
+        "bucketName": "MyBackups",
+        "accessKeyId": "****",
+        "secretAccessKey": "****",
+        "region": "ap-south-1"
+    },
+
+    "MYSQL": {
+        "host": "example.com",
+        "user": "****",
+        "password": "****",
+        "database": "****"
+    }
+}
