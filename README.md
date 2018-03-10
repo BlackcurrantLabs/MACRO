@@ -8,8 +8,8 @@ The utility is designed to run as a cron job to execute full DB backups as frequ
 
 run `npm install`
 
-Note : `aws-sdk` is not included in `package.json` because the Lambda runtime already has it preinstalled. The zip archieves generated this way are much smaller. If you need to execute this script elsewhere, you will need to include it as a dependency.<br>
-Jusy run `npm install aws-sdk --save`.
+Note : `aws-sdk` is not included in `package.json` because the Lambda runtime already has it preinstalled. The zip archives generated this way are much smaller. If you need to execute this script elsewhere, you will need to include it as a dependency.<br>
+Just run `npm install aws-sdk --save`.
 
 You will need to add a config.json file to run the utility that includes the credentials of the MySQL host and the target S3 Bucket.
 
@@ -36,7 +36,7 @@ Sample `config.json`
 ## Lambda Deployment
 
 Run npm run zip and upload the generated Archive.zip file as a Lambda source.
-Test the function with any blank event `{}` for memory requirements. Memory required to execute will depend on the size of your database. 
+Test the function with any blank event `{}` with maximum memory possible. Then check the actual max memory usage after the lambda function execution completes. You can then set your lambda memory to be the next higher option than your current usage.  Memory required to execute will depend on the size of your database. 
 
 ## Backup trigger and frequency
 
@@ -45,7 +45,12 @@ You can set up AWS CloudWatch cron job to trigger this lambda at any specific ti
 ### Example
 
 A Cron expression of  `30 22 * * ? *`
-Will trigger it at 10:30 pm GMT everyday.<br>
+Will trigger it at 10:30 pm GMT every day.<br>
 Don't forget to account for your timezone.
 
-##### Hope this utility helps you out. Any contribution to the source code will be highly appreciated.
+![Screenshot](https://raw.githubusercontent.com/BlackcurrantApps/MACRO/master/cloudwatch.png)<br>
+
+
+Hope this utility helps you out. Any contribution to the source code will be highly appreciated :)
+
+##### Made with ❤️in India
