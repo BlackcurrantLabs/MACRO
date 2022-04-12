@@ -14,17 +14,20 @@ exports.handler = function (event, context, callback) {
         region: config.S3.region
     });
     mysqlDump({
-        host: config.MYSQL.host,
-        user: config.MYSQL.user,
-        password: config.MYSQL.password,
-        database: config.MYSQL.database,
-        dest: '/tmp/data.sql' // destination file 
+        connection: {
+            host: config.MYSQL.host,
+            user: config.MYSQL.user,
+            password: config.MYSQL.password,
+            database: config.MYSQL.database,
+        },
+        dumpToFile: '/tmp/data.sql.gz', // destination file 
+        compressFile: true,
     }, function (err) {
         if (!err) {
-            var backupFile = fs.readFileSync('/tmp/data.sql');
+            var backupFile = fs.readFileSync('/tmp/data.sql.gz');
             s3.upload({
                 Bucket: config.S3.bucketName,
-                Key: `${config.backup_folder}/${config.MYSQL.database}@${config.MYSQL.host} ${new Date().toDateString()} ${new Date().getTime()}.sql`,
+                Key: `${config.backup_folder}/${config.MYSQL.database}@${config.MYSQL.host} ${new Date().toDateString()} ${new Date().getTime()}.sql.gz`,
                 ACL: 'private',
                 Body: backupFile,
                 ContentType: 'application/sql'

@@ -6,8 +6,8 @@
   "description": "A backup utility to backup MySQL DB to AWS S3",
   "main": "index.js",
   "scripts": {
-    "start": "node ./index.js",
-    "zip" : "zip -r Archive.zip . && open ."
+    "start": "node --max-old-space-size=4096 ./index.js",
+    "zip": "zip -r Archive.zip . && open ."
   },
   "keywords": [
     "Backup",
@@ -17,6 +17,7 @@
     "mysqldump"
   ],
   "dependencies": {
-    "mysqldump": "^1.4.2"
+    "aws-sdk": "^2.1112.0",
+    "mysqldump": "^3.2.0"
   }
 }
